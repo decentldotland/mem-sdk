@@ -1,0 +1,44 @@
+{
+  "name": "mem-sdk",
+  "version": "0.0.1",
+  "description": "JS SDK for MEM Serverless Functions",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
+  },
+  "scripts": {
+    "start": "dist/index.js",
+    "localbuild": "npx tsc",
+    "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decentldotland/mem-sdk.git"
+  },
+  "keywords": [
+    "MEM",
+    "SDK",
+    "JS",
+    "TS"
+  ],
+  "author": "charmful0x",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/decentldotland/mem-sdk/issues"
+  },
+  "homepage": "https://github.com/decentldotland/mem-sdk#readme",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
+    "isomorphic-unfetch": "^4.0.2",
+    "microbundle": "^0.15.1",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}
