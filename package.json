@@ -1,6 +1,6 @@
 {
   "name": "mem-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JS SDK for MEM Serverless Functions",
   "main": "dist/index.js",
   "module": "dist/index.m.js",

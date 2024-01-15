@@ -28,8 +28,8 @@ npm install -g mem-sdk
 ### Import MEM SDK
 
 ```ts
-import Mem from "mem-sdk";
-const mem : Mem = new Mem();
+import { Mem } from "mem-sdk";
+const mem = new Mem();
 ```
 
 ### Retrieve a function state

@@ -2,7 +2,7 @@ import { Base } from "./utils/base";
 import { applyMixins } from "./utils/utils";
 import { Inputs } from "./types";
 
-class Actions extends Base {
+class Mem extends Base {
   async read<T>(id: string): Promise<T> {
     const state = await this.readFunction(id);
     return state;
@@ -19,9 +19,9 @@ class Actions extends Base {
   }
 }
 
-class Mem extends Base {}
-interface Mem extends Actions {}
+class Actions extends Base {}
+// interface Mem extends Actions {}
 
-applyMixins(Mem, [Actions]);
+// applyMixins(Mem, [Actions]);
 
-export default Mem;
+export { Mem, Actions };
