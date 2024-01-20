@@ -2,19 +2,25 @@
   "name": "mem-sdk",
   "version": "0.0.2",
   "description": "JS SDK for MEM Serverless Functions",
-  "main": "dist/index.js",
-  "module": "dist/index.m.js",
-  "unpkg": "dist/index.umd.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "unpkg": "dist/index.cjs.js",
   "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.js"
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "browser": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.es.js"
+    }
   },
+
   "scripts": {
-    "start": "dist/index.js",
-    "localbuild": "npx tsc",
-    "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
-    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+    "start": "vite watch",
+    "build": "vite build",  
+    "localbuild": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -33,10 +39,11 @@
   },
   "homepage": "https://github.com/decentldotland/mem-sdk#readme",
   "dependencies": {
-    "isomorphic-fetch": "^3.0.0",
-    "isomorphic-unfetch": "^4.0.2",
-    "microbundle": "^0.15.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@types/node": "^20.3.1",
+    "tslib": "2.5.3",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0"
   },
   "files": [
     "dist"
