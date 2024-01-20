@@ -1,11 +1,11 @@
 const i = "https://mem-cli-server-482a8c7c1299.herokuapp.com/mem-cli";
-function p(s, t) {
-  const n = s.split("").map((a) => a.charCodeAt(0)), e = {
+function p(o, t) {
+  const n = o.split("").map((s) => s.charCodeAt(0)), e = {
     contractOwner: "",
     contentType: "application/javascript",
     contractSrc: n,
     initState: t
-  }, o = [
+  }, a = [
     { name: "Content-Type", value: "application/javascript" },
     { name: "Owner", value: "" },
     { name: "App-Name", value: "EM" },
@@ -13,14 +13,16 @@ function p(s, t) {
     { name: "EM-Bundled", value: "true" },
     { name: "Size", value: String(n.length) }
   ];
-  return { dataTx: e, tags: o };
+  return { dataTx: e, tags: a };
 }
 class u {
   async readFunction(t) {
-    const n = `https://api.mem.tech/api/state/${t}`, e = await fetch(n);
-    if (e.ok)
-      return await e.json();
-    throw new Error(e.statusText);
+    const n = `https://api.mem.tech/api/state/${t}`, a = await fetch(n, { headers: {
+      "Content-Type": "application/json"
+    } });
+    if (a.ok)
+      return await a.json();
+    throw new Error(a.statusText);
   }
   async writeFunction(t, n) {
     const e = "https://api.mem.tech/api/transactions", c = {
@@ -42,7 +44,7 @@ class u {
     throw new Error(r.statusText);
   }
   async deployFunction(t, n) {
-    const e = JSON.stringify(p(t, n)), a = await fetch(i, {
+    const e = JSON.stringify(p(t, n)), s = await fetch(i, {
       method: "post",
       url: i,
       body: e,
@@ -53,9 +55,9 @@ class u {
       maxContentLength: 1e8,
       maxBodyLength: 1e9
     });
-    if (a.ok)
-      return { id: (await a.json()).txid };
-    throw new Error(a.statusText);
+    if (s.ok)
+      return { id: (await s.json()).txid };
+    throw new Error(s.statusText);
   }
 }
 class d extends u {
