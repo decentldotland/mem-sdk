@@ -1,9 +1,9 @@
-import * as fetchImport from "isomorphic-unfetch";
-const fetch = (fetchImport.default ||
-  fetchImport) as typeof fetchImport.default;
-
 import { generateFunctionFormat, TXS_BROADCASTER_URL } from "./utils";
-import { Inputs } from "../types";
+import { Inputs, MEMResponseObject, state } from "../types";
+
+interface deployValues {
+  id: string;
+}
 
 export abstract class Base {
   async readFunction(id: string): Promise<any> {
@@ -13,7 +13,7 @@ export abstract class Base {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
 
     if (response.ok) {
       const data = await response.json();
@@ -22,7 +22,10 @@ export abstract class Base {
     throw new Error(response.statusText);
   }
 
-  async writeFunction(id: string, inputs: Inputs): Promise<any> {
+  async writeFunction(
+    id: string,
+    inputs: Inputs
+  ): Promise<MEMResponseObject | any> {
     const url = `https://api.mem.tech/api/transactions`;
     // Set the headers for the request
     const headers = {
@@ -48,13 +51,16 @@ export abstract class Base {
 
     if (response.ok) {
       const data = await response.json();
-      return data as any;
+      return data as MEMResponseObject;
     }
 
     throw new Error(response.statusText);
   }
 
-  async deployFunction(src: string, initState: string): Promise<any> {
+  async deployFunction(
+    src: string,
+    initState: string
+  ): Promise<deployValues | string | any> {
     const data = JSON.stringify(generateFunctionFormat(src, initState));
 
     const options = {
@@ -73,7 +79,7 @@ export abstract class Base {
 
     if (response.ok) {
       const data = await response.json();
-      return { id: data.txid } as any;
+      return { id: data.txid } as deployValues;
     }
 
     throw new Error(response.statusText);
