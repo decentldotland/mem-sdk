@@ -8,14 +8,14 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
-  resolve: {
-    alias: {
-      unfetch: path.resolve(
-        __dirname,
-        "node_modules/isomorphic-unfetch/index.mjs"
-      ),
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     unfetch: path.resolve(
+  //       __dirname,
+  //       "node_modules/isomorphic-unfetch/index.mjs"
+  //     ),
+  //   },
+  // },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

@@ -1,8 +1,7 @@
 {
-    "type": "module",
     "name": "ts-example",
     "scripts": {
-        "start": "npx tsx ./index.js"
+        "start": "node ./index.js"
     },
     "dependencies": {
         "mem-sdk": "file:../..",

@@ -6,6 +6,11 @@
   <p align="center">JS SDK for MEM Serverless Functions</p>
 </p>
 
+## Build size
+
+`dist/index.cjs.js` <span style="color:green;">1.52 kB │ gzip: 0.69 kB</span></br>
+`dist/index.umd.js` <span style="color:green;">1.72 kB │ gzip: 0.80 kB</span></br>
+`dist/index.es.js` <span style="color:green;">1.95 kB │ gzip: 0.74 kB</span>
 
 ## Build Locally
 
@@ -14,22 +19,31 @@ git clone https://github.com/decentldotland/mem-sdk.git
 
 cd mem-sdk
 
-npm install && npm run localbuild
+npm install && npm run build
 ```
 
 ## Install
 
 ```bash
-npm install -g mem-sdk
+npm install mem-sdk
 ```
 
 ## Usage Guide
 
 ### Import MEM SDK
 
+React, and other frameworks (also check out [React Version](https://github.com/decentldotland/react-mem-api/)):
+
 ```ts
 import Mem from "mem-sdk";
 const mem : Mem = new Mem();
+```
+
+Node:
+
+```ts
+const { Mem } = require("mem-sdk");
+const mem: Mem = new Mem();
 ```
 
 ### Retrieve a function state
@@ -39,7 +53,7 @@ const FUNCTION_ID = "...";
 const state = await mem.read(FUNCTION_ID);
 ```
 
-### Send an interaction
+### Send an interaction (only works on server-side)
 
 ```ts
 const FUNCTION_ID = "...";
