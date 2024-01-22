@@ -86,4 +86,4 @@ const id = await mem.deploy(SRC, INIT_STATE);
 ```
 
 ## License
-This repositoy is licensed under the [MIT License](./LICENSE)
+This repository is licensed under the [MIT License](./LICENSE)
