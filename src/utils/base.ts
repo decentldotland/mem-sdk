@@ -1,4 +1,4 @@
-import { generateFunctionFormat, TXS_BROADCASTER_URL } from "./utils";
+import { generateFunctionFormat, resolveMemName, TXS_BROADCASTER_URL } from "./utils";
 import { Inputs, MEMResponseObject, state } from "../types";
 
 interface deployValues {
@@ -7,6 +7,10 @@ interface deployValues {
 
 export abstract class Base {
   async readFunction(id: string): Promise<any> {
+
+    if (id.endsWith(".mem")) {
+      id = await resolveMemName(id);
+    }
     const url = `https://api.mem.tech/api/state/${id}`;
 
     const headers = {
@@ -26,6 +30,10 @@ export abstract class Base {
     id: string,
     inputs: Inputs
   ): Promise<MEMResponseObject | any> {
+
+    if (id.endsWith(".mem")) {
+      id = await resolveMemName(id);
+    }
     const url = `https://api.mem.tech/api/transactions`;
     // Set the headers for the request
     const headers = {
