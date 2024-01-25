@@ -85,5 +85,13 @@ const INIT_STATE = '{"logs": []}';
 const id = await mem.deploy(SRC, INIT_STATE);
 ```
 
+## Named functions
+
+It is possible to assign a memorable name to a function ID using the [function registry tool](https://mem.tech/function-registry) (e.g., `ans.mem` instead of `Tih...I5M`). These `.mem` names are resolvable with the MEM SDK the same way you would pass a function ID:
+
+```ts
+await mem.read("ans.mem");
+```
+
 ## License
 This repository is licensed under the [MIT License](./LICENSE)
