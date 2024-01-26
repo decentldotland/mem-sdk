@@ -11,7 +11,9 @@ export default function Home() {
 
   const queryData = async () => {
     try {
-      const mem = new Mem();
+      const mem = new Mem({
+        network: "mainnet"
+      });
       const result = (await mem.read(haikuContract)) as any;
       if (!result?.haikus)
         return setData("Error retrieving latest Haiku, try again later");
