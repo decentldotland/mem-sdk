@@ -26,6 +26,11 @@ class Actions extends Base {
     const res = await this.deployFunction(src, initState);
     return res;
   }
+
+  async fork<T>(id: string, net: string, state?: string): Promise<T> {
+    const res = await this.forkFunction(id, net, state);
+    return res;
+  }
 }
 
 class Mem extends Actions {}
