@@ -5,7 +5,9 @@ import { haikuContract } from "../../constants";
 
 export async function GET(request: Request) {
   const generateHaiku = async () => {
-    const mem = new Mem();
+    const mem = new Mem({
+      network: "mainnet"
+    });
     const inputs = { function: "generate" };
     const response = (await mem.write(
       haikuContract,
