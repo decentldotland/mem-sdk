@@ -6,12 +6,6 @@
   <p align="center">JS SDK for MEM Serverless Functions</p>
 </p>
 
-## Build size
-
-`dist/index.cjs.js` <span style="color:green;">1.52 kB │ gzip: 0.69 kB</span></br>
-`dist/index.umd.js` <span style="color:green;">1.72 kB │ gzip: 0.80 kB</span></br>
-`dist/index.es.js` <span style="color:green;">1.95 kB │ gzip: 0.74 kB</span>
-
 ## Build Locally
 
 ```bash
@@ -21,6 +15,12 @@ cd mem-sdk
 
 npm install && npm run build
 ```
+
+#### Build size
+
+- `dist/index.cjs.js` <span style="color:green;">3.20 kB │ gzip: 1.04 kB</span></br>
+- `dist/index.umd.js` <span style="color:green;">3.40 kB │ gzip: 1.14 kB</span></br>
+- `dist/index.es.js` <span style="color:green;">4.39 kB │ gzip: 1.14 kB</span>
 
 ## Install
 
@@ -32,18 +32,32 @@ npm install mem-sdk
 
 ### Import MEM SDK
 
-React, and other frameworks (also check out [React Version](https://github.com/decentldotland/react-mem-api/)):
+#### React, and other frameworks (also check out [React Version](https://github.com/decentldotland/react-mem-api/)):
 
 ```ts
 import Mem from "mem-sdk";
-const mem : Mem = new Mem();
+
+const mem : Mem = new Mem({
+  network: "mainnet" || "testnet"
+});
 ```
 
-Node:
+#### Node (TS)
 
 ```ts
 const { Mem } = require("mem-sdk");
-const mem: Mem = new Mem();
+const mem: Mem = new Mem({
+  network: "mainnet" || "testnet"
+});
+```
+
+#### Node (ES6)
+
+```ts
+import { Mem } from "mem-sdk"
+const mem = new Mem({
+  network: "mainnet" || "testnet"
+});
 ```
 
 ### Retrieve a function state
@@ -85,7 +99,18 @@ const INIT_STATE = '{"logs": []}';
 const id = await mem.deploy(SRC, INIT_STATE);
 ```
 
-## Named functions
+### Fork a function to mainnet or testnet
+While the SDK should be initialized for `mainnet` using this method, the `fork` functionality allows forking ***mainnet*** deployed function to either mainnet or carbon testnet:
+
+```ts
+const MAINNET_FUNCTION_ID = "...";
+const FORK_IT_TO = "mainnet" || "testnet";
+const OVERWRITE_INIT_STATE = btoa('{"new": "state"}'); // optional
+
+const id = await mem.fork(MAINNET_FUNCTION_ID, FORK_IT_TO, OVERWRITE_INIT_STATE?);
+```
+
+### Named functions resolving DX (only `mainnet`)
 
 It is possible to assign a memorable name to a function ID using the [function registry tool](https://mem.tech/function-registry) (e.g., `ans.mem` instead of `Tih...I5M`). These `.mem` names are resolvable with the MEM SDK the same way you would pass a function ID:
 
