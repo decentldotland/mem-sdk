@@ -18,9 +18,9 @@ npm install && npm run build
 
 #### Build size
 
-- `dist/index.cjs.js` <span style="color:green;">3.20 kB │ gzip: 1.04 kB</span></br>
-- `dist/index.umd.js` <span style="color:green;">3.40 kB │ gzip: 1.14 kB</span></br>
-- `dist/index.es.js` <span style="color:green;">4.39 kB │ gzip: 1.14 kB</span>
+- `dist/index.cjs.js` <span style="color:green;">3.46 kB │ gzip: 1.07 kB</span></br>
+- `dist/index.umd.js` <span style="color:green;">3.66 kB │ gzip: 1.17 kB</span></br>
+- `dist/index.es.js` <span style="color:green;">4.74 kB │ gzip: 1.18 kB</span>
 
 ## Install
 
