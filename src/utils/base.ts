@@ -197,4 +197,24 @@ export abstract class Base {
       throw new Error(response.statusText);
     }
   }
+
+  async kvFunction(id: string): Promise<any> {
+    if (this.network === "mainnet") {
+      const url = `https://mem-api.com/kv/${id}`;
+      
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const response = await fetch(url, { headers });
+
+      if (response.ok) {
+        const data = await response.json();
+        return data as any;
+      }
+
+      throw new Error(response.statusText);
+    }
+  }
+
 }
