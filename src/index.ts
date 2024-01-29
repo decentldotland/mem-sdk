@@ -31,6 +31,11 @@ class Actions extends Base {
     const res = await this.forkFunction(id, net, state);
     return res;
   }
+
+  async kvGet<T>(id: string): Promise<T> {
+    const res = await this.kvFunction(id);
+    return res;
+  }
 }
 
 class Mem extends Actions {}
