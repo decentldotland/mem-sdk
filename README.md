@@ -109,6 +109,11 @@ const OVERWRITE_INIT_STATE = btoa('{"new": "state"}'); // optional
 
 const id = await mem.fork(MAINNET_FUNCTION_ID, FORK_IT_TO, OVERWRITE_INIT_STATE?);
 ```
+### Get a function's KV object (only `mainnet`)
+```ts
+const MAINNET_FUNCTION_ID = "...";
+const kv = await mem.kvGet(MAINNET_FUNCTION_ID);
+```
 
 ### Named functions resolving DX (only `mainnet`)
 
